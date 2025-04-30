@@ -5,7 +5,7 @@ import telebot
 from parser import *
 from db import *
 
-bot = telebot.TeleBot('8092057466:AAEvaTKlJRa7rKExCnXROLvZ77Tz4exEO5s')
+bot = telebot.TeleBot('7833937382:AAEY_5GgGZRGWNCvvPWjcgFB48KygWHXhgs')
 ADMIN = ''
 
 zodiac_signs = {
