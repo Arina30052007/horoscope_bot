@@ -126,12 +126,6 @@ def callback_worker(call):
                      disable_web_page_preview=True)
 
 
-@bot.message_handler(func=lambda message: message.text == 'Близнецы?')
-def how_are_you(message: types.Message):
-    bot.send_message(
-        message.from_user.id,
-        "кушаю, а ты?",
-    )
 
 
 bot.polling(none_stop=True, interval=0)
