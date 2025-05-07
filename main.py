@@ -3,7 +3,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from telebot import types
 import telebot
 from parser import *
-from db import *
+from bd import *
 from requests import get
 
 bot = telebot.TeleBot('')
@@ -40,7 +40,12 @@ def send_welcome(message):
     wlcmmsg = '<b>👋 Привет ' + message.from_user.first_name + '</b>' + '\n\n⚛️ Выберите Ваш знак зодиака'
     bot.send_message(message.from_user.id, text=wlcmmsg, reply_markup=markup, parse_mode="html",
                      disable_web_page_preview=True)
-    tgidregister(message.from_user.id)
+
+@bot.message_handler(commands=['help'])
+def send_welcome(message):
+    wlcmmsg = '🤔 Не знаешь свой знак зодиака? '  +  '\n\nТогда просто введи свой день рождения в виде "день.месяц"'
+    bot.send_message(message.from_user.id, text=wlcmmsg)
+
 
 
 @bot.message_handler(content_types=['text'])
@@ -50,39 +55,39 @@ def process_step(message):
     if len(a) == 2:
         a = [int(i) for i in a]
         if ((a[0] in [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 3) or
-                (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] and a[1] == 4)):
+                (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] and a[1] == 4)):
             bot.reply_to(message, 'Вы ♈️ Овен')
-        elif ((a[0] in [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 4) or
+        elif ((a[0] in [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 4) or
               (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] and a[1] == 5)):
             bot.reply_to(message, 'Вы ♉ Телец')
         elif ((a[0] in [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 5) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] and a[1] == 6)):
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21] and a[1] == 6)):
             bot.reply_to(message, 'Вы ♊ Близнецы')
-        elif ((a[0] in [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 6) or
+        elif ((a[0] in [22, 23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 6) or
               (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] and a[1] == 7)):
             bot.reply_to(message, 'Вы ♋️ Рак')
         elif ((a[0] in [23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 7) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] and a[1] == 8)):
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] and a[1] == 8)):
             bot.reply_to(message, 'Вы ♌ Лев')
-        elif ((a[0] in [23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 8) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] and a[1] == 9)):
+        elif ((a[0] in [24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 8) or
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] and a[1] == 9)):
             bot.reply_to(message, 'Вы ♍ Дева')
-        elif ((a[0] in [23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 9) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] and a[1] == 10)):
+        elif ((a[0] in [24, 25, 26, 27, 28, 29, 30] and a[1] == 9) or
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] and a[1] == 10)):
             bot.reply_to(message, 'Вы ♎ Весы')
-        elif ((a[0] in [23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 10) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21] and a[1] == 11)):
+        elif ((a[0] in [24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 10) or
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] and a[1] == 11)):
             bot.reply_to(message, 'Вы ♏ Скорпион')
-        elif ((a[0] in [22, 23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 11) or
+        elif ((a[0] in [23, 24, 25, 26, 27, 28, 29, 30] and a[1] == 11) or
               (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21] and a[1] == 12)):
             bot.reply_to(message, 'Вы ♐ Стрелец')
         elif ((a[0] in [22, 23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 12) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] and a[1] == 1)):
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] and a[1] == 1)):
             bot.reply_to(message, 'Вы ♑ Козерог')
-        elif ((a[0] in [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 1) or
-              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] and a[1] == 2)):
+        elif ((a[0] in [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31] and a[1] == 1) or
+              (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] and a[1] == 2)):
             bot.reply_to(message, 'Вы ♒ Водолей')
-        elif ((a[0] in [19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29] and a[1] == 2) or
+        elif ((a[0] in [21, 22, 23, 24, 25, 26, 27, 28, 29] and a[1] == 2) or
               (a[0] in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] and a[1] == 3)):
             bot.reply_to(message, 'Вы ♓ Рыбы')
 
@@ -103,6 +108,7 @@ def process_step(message):
                 '♒ Водолей': 'https://cdn.fishki.net/upload/post/2019/08/20/3063203/tn/vodolej.jpg',
                 '♓ Рыбы': 'https://cdn.fishki.net/upload/post/2019/08/20/3063203/tn/ryby.jpg'
             }
+            tgidregister(message.from_user.id, message.from_user.first_name, sign)
             keyboard = types.InlineKeyboardMarkup()
             keyboard.add(*[InlineKeyboardButton(text=period, callback_data=f'{sign}|{period}') for period in
                            ['вчера', 'сегодня', 'завтра', 'неделя', 'месяц', 'год']])
