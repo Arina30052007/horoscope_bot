@@ -5,7 +5,7 @@ from parser import *
 from bd import *
 from requests import get
 
-bot = telebot.TeleBot('8101490115:AAGWSt8km_gWTmrYNp1UqXbU3RXmotbQwp8')
+bot = telebot.TeleBot('')
 ADMIN = ''
 
 zodiac_signs = {
