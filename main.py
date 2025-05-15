@@ -6,7 +6,6 @@ from bd import *
 from requests import get
 
 bot = telebot.TeleBot('')
-ADMIN = ''
 
 zodiac_signs = {
     '♈️ Овен': 'aries',
