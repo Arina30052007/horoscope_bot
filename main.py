@@ -1,12 +1,11 @@
-import telebot
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+from telebot.types import InlineKeyboardButton
 from telebot import types
 import telebot
 from parser import *
 from bd import *
 from requests import get
 
-bot = telebot.TeleBot('')
+bot = telebot.TeleBot('8101490115:AAGWSt8km_gWTmrYNp1UqXbU3RXmotbQwp8')
 ADMIN = ''
 
 zodiac_signs = {
